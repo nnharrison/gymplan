@@ -5,40 +5,111 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>24-Week Training Plan</title>
 <style>
-  :root {
-    --bg: #faf9f7;
-    --surface: #ffffff;
-    --surface2: #f5f2ef;
-    --accent: #b08a7a;
-    --accent-light: #e8d8d0;
-    --accent-dark: #8a6a5c;
-    --text: #2a2218;
-    --text-muted: #8a7e74;
-    --border: #e8e0d8;
-    --circuit1: #d4a89a;
-    --circuit2: #9ab4c8;
-    --core: #b8c9a0;
-    --radius: 16px;
-    --shadow: 0 2px 16px rgba(42,34,24,0.08);
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-  body { font-family: -apple-system, 'Helvetica Neue', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+:root {
+  --bg: #fdf7ff;
+  --surface: #ffffff;
+  --surface2: #f7ecff;
 
-  /* SCREENS */
-  .screen { display: none; min-height: 100vh; flex-direction: column; }
-  .screen.active { display: flex; }
+  --accent: #ff9acb;
+  --accent-light: #ffd6ec;
+  --accent-dark: #d96fa8;
 
-  /* HOME */
-  #home { background: var(--bg); }
-  .home-header { background: var(--accent); padding: 60px 24px 40px; text-align: center; }
-  .home-header h1 { font-size: 28px; font-weight: 700; color: white; letter-spacing: -0.5px; }
-  .home-header p { color: rgba(255,255,255,0.85); font-size: 15px; margin-top: 6px; }
-  .week-grid { padding: 24px 16px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
-  .week-btn { background: var(--surface); border: 1.5px solid var(--border); border-radius: 12px; padding: 14px 6px; text-align: center; cursor: pointer; transition: all 0.15s; }
-  .week-btn:active { transform: scale(0.96); background: var(--accent-light); }
-  .week-btn .wnum { font-size: 18px; font-weight: 700; color: var(--accent-dark); }
-  .week-btn .wlabel { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+  --text: #3a2f4a;
+  --text-muted: #8c7a99;
 
+  --border: #f3d9ff;
+
+  --circuit1: #ffb7d5;
+  --circuit2: #aee6ff;
+  --core: #d7c7ff;
+
+  --radius: 16px;
+  --shadow: 0 2px 16px rgba(58,47,74,0.08);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: -apple-system, 'Helvetica Neue', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* SCREENS */
+.screen {
+  display: none;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.screen.active {
+  display: flex;
+}
+
+/* HOME */
+#home {
+  background: var(--bg);
+}
+
+/* Cotton‑candy gradient header */
+.home-header {
+  background: linear-gradient(135deg, #ffb7d5, #aee6ff, #d7c7ff);
+  padding: 60px 24px 40px;
+  text-align: center;
+}
+
+.home-header h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: white;
+  letter-spacing: -0.5px;
+}
+
+.home-header p {
+  color: rgba(255,255,255,0.85);
+  font-size: 15px;
+  margin-top: 6px;
+}
+
+.week-grid {
+  padding: 24px 16px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.week-btn {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 6px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.week-btn:active {
+  transform: scale(0.96);
+  background: var(--accent-light);
+}
+
+.week-btn .wnum {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--accent-dark);
+}
+
+.week-btn .wlabel {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
   /* WEEK VIEW */
   #week-view { background: var(--bg); }
   .nav-bar { display: flex; align-items: center; padding: 56px 16px 16px; background: var(--surface); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 10; }
