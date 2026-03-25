@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>24-Week Training</title>
+<title>12-Week Training</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -27,389 +27,151 @@
   --shadow:    0 4px 24px rgba(180,120,200,0.12);
   --r: 18px;
 }
-
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+body{font-family:'DM Sans',sans-serif;background:var(--snow);color:var(--text);min-height:100vh;overflow-x:hidden;}
 
-body{
-  font-family:'DM Sans',sans-serif;
-  background:var(--snow);
-  color:var(--text);
-  min-height:100vh;
-  overflow-x:hidden;
-}
-
-/* ─── SCREENS ─── */
 .screen{display:none;min-height:100vh;flex-direction:column;}
 .screen.active{display:flex;}
 
-/* ─── HEADER GRADIENT ─── */
 .candy-header{
   background:linear-gradient(135deg,#ffb3d1 0%,#d9c7ff 35%,#b3e5fc 65%,#b8f0e0 100%);
   padding:env(safe-area-inset-top,20px) 20px 32px;
   padding-top:max(env(safe-area-inset-top,20px),52px);
-  position:relative;
-  overflow:hidden;
-}
-.candy-header::before{
-  content:'';
-  position:absolute;inset:0;
-  background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.15'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-}
-.candy-header h1{
-  font-family:'Nunito',sans-serif;
-  font-size:30px;font-weight:900;
-  color:#fff;letter-spacing:-0.5px;
-  text-shadow:0 2px 12px rgba(100,50,150,0.2);
-  position:relative;
-}
-.candy-header p{
-  color:rgba(255,255,255,0.88);
-  font-size:14px;margin-top:4px;
-  font-weight:500;position:relative;
-}
-
-/* ─── WEEK GRID ─── */
-.week-grid{
-  padding:20px 16px 32px;
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:10px;
-}
-.week-btn{
-  background:var(--white);
-  border:2px solid var(--border);
-  border-radius:16px;
-  padding:16px 4px 14px;
-  text-align:center;
-  cursor:pointer;
-  transition:transform .15s,box-shadow .15s,border-color .15s;
-  box-shadow:0 2px 10px rgba(180,140,210,0.07);
-  position:relative;
-  overflow:hidden;
-}
-.week-btn::before{
-  content:'';
-  position:absolute;top:0;left:0;right:0;
-  height:3px;
-  background:linear-gradient(90deg,var(--pink),var(--lavender),var(--sky));
-  opacity:0;
-  transition:opacity .2s;
-}
-.week-btn:hover::before,.week-btn:active::before{opacity:1;}
-.week-btn:active{transform:scale(0.93);background:var(--pink-soft);}
-.wnum{
-  font-family:'Nunito',sans-serif;
-  font-size:20px;font-weight:900;
-  background:linear-gradient(135deg,var(--pink-deep),var(--lav-deep));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-}
-.wlabel{font-size:10px;color:var(--text-soft);margin-top:1px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;}
-
-/* ─── NAV BAR ─── */
-.nav-bar{
-  display:flex;align-items:center;
-  padding:max(env(safe-area-inset-top,16px),52px) 16px 14px;
-  background:var(--white);
-  border-bottom:1.5px solid var(--border);
-  position:sticky;top:0;z-index:50;
-}
-.back-btn{
-  width:38px;height:38px;
-  border:none;background:var(--pink-soft);
-  border-radius:50%;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;
-  font-size:22px;color:var(--pink-deep);
-  font-family:'Nunito',sans-serif;font-weight:700;
-  flex-shrink:0;
-  transition:background .15s;
-}
-.back-btn:active{background:var(--pink);}
-.nav-title{
-  flex:1;text-align:center;
-  font-family:'Nunito',sans-serif;
-  font-size:18px;font-weight:800;color:var(--text);
-}
-.nav-spacer{width:38px;}
-
-/* ─── WORKOUT CARDS ─── */
-.workout-cards{padding:18px 16px;display:flex;flex-direction:column;gap:12px;}
-.workout-card{
-  background:var(--white);
-  border-radius:var(--r);
-  border:2px solid var(--border);
-  padding:18px 20px;
-  cursor:pointer;
-  transition:transform .15s,box-shadow .15s;
-  box-shadow:var(--shadow);
   position:relative;overflow:hidden;
 }
-.workout-card::after{
-  content:'›';
-  position:absolute;right:18px;top:50%;transform:translateY(-50%);
-  font-size:24px;color:var(--pink-deep);font-weight:700;
+.candy-header::before{
+  content:'';position:absolute;inset:0;
+  background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.15'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/svg%3E");
 }
-.workout-card:active{transform:scale(0.97);}
-.wc-tag{
-  font-size:10px;font-weight:800;letter-spacing:1px;
-  text-transform:uppercase;margin-bottom:5px;
-}
-.wc-tag.q{color:var(--pink-deep);}
-.wc-tag.f{color:var(--mint-deep);}
-.wc-tag.h{color:var(--sky-deep);}
-.wc-tag.u{color:var(--lav-deep);}
-.workout-card h3{font-family:'Nunito',sans-serif;font-size:20px;font-weight:900;color:var(--text);}
-.wc-meta{font-size:12px;color:var(--text-soft);margin-top:3px;font-weight:500;}
-.wc-stripe{
-  position:absolute;left:0;top:0;bottom:0;width:4px;
-  border-radius:var(--r) 0 0 var(--r);
-}
-.wc-stripe.q{background:linear-gradient(180deg,var(--pink),var(--lavender));}
-.wc-stripe.f{background:linear-gradient(180deg,var(--mint),var(--sky));}
-.wc-stripe.h{background:linear-gradient(180deg,var(--sky),var(--mint));}
-.wc-stripe.u{background:linear-gradient(180deg,var(--lavender),var(--pink));}
+.candy-header h1{font-family:'Nunito',sans-serif;font-size:30px;font-weight:900;color:#fff;letter-spacing:-0.5px;text-shadow:0 2px 12px rgba(100,50,150,0.2);position:relative;}
+.candy-header p{color:rgba(255,255,255,0.88);font-size:14px;margin-top:4px;font-weight:500;position:relative;}
 
-/* ─── SESSION SETUP ─── */
+.week-grid{padding:20px 16px 32px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+.week-btn{
+  background:var(--white);border:2px solid var(--border);border-radius:16px;
+  padding:16px 4px 14px;text-align:center;cursor:pointer;
+  transition:transform .15s,box-shadow .15s;
+  box-shadow:0 2px 10px rgba(180,140,210,0.07);position:relative;overflow:hidden;
+}
+.week-btn::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--pink),var(--lavender),var(--sky));opacity:0;transition:opacity .2s;}
+.week-btn:active::before{opacity:1;}
+.week-btn:active{transform:scale(0.93);background:var(--pink-soft);}
+.wnum{font-family:'Nunito',sans-serif;font-size:20px;font-weight:900;background:linear-gradient(135deg,var(--pink-deep),var(--lav-deep));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.wlabel{font-size:10px;color:var(--text-soft);margin-top:1px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;}
+
+.nav-bar{display:flex;align-items:center;padding:max(env(safe-area-inset-top,16px),52px) 16px 14px;background:var(--white);border-bottom:1.5px solid var(--border);position:sticky;top:0;z-index:50;}
+.back-btn{width:38px;height:38px;border:none;background:var(--pink-soft);border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--pink-deep);font-family:'Nunito',sans-serif;font-weight:700;flex-shrink:0;transition:background .15s;}
+.back-btn:active{background:var(--pink);}
+.nav-title{flex:1;text-align:center;font-family:'Nunito',sans-serif;font-size:18px;font-weight:800;color:var(--text);}
+.nav-spacer{width:38px;}
+
+.workout-cards{padding:18px 16px;display:flex;flex-direction:column;gap:12px;}
+.workout-card{background:var(--white);border-radius:var(--r);border:2px solid var(--border);padding:18px 20px 18px 24px;cursor:pointer;transition:transform .15s,box-shadow .15s;box-shadow:var(--shadow);position:relative;overflow:hidden;}
+.workout-card:active{transform:scale(0.97);}
+.workout-card::after{content:'›';position:absolute;right:18px;top:50%;transform:translateY(-50%);font-size:24px;color:var(--pink-deep);font-weight:700;}
+.wc-stripe{position:absolute;left:0;top:0;bottom:0;width:5px;border-radius:var(--r) 0 0 var(--r);}
+.wc-stripe.a{background:linear-gradient(180deg,var(--pink),var(--lavender));}
+.wc-stripe.b{background:linear-gradient(180deg,var(--sky),var(--mint));}
+.wc-stripe.c{background:linear-gradient(180deg,var(--lavender),var(--pink));}
+.wc-stripe.d{background:linear-gradient(180deg,var(--mint),var(--sky));}
+.wc-label{font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:5px;}
+.wc-label.a{color:var(--pink-deep);}
+.wc-label.b{color:var(--sky-deep);}
+.wc-label.c{color:var(--lav-deep);}
+.wc-label.d{color:var(--mint-deep);}
+.workout-card h3{font-family:'Nunito',sans-serif;font-size:19px;font-weight:900;color:var(--text);}
+.wc-meta{font-size:12px;color:var(--text-soft);margin-top:3px;font-weight:500;}
+
+/* SETUP */
 .setup-content{padding:24px 20px;flex:1;}
 .setup-content h2{font-family:'Nunito',sans-serif;font-size:24px;font-weight:900;margin-bottom:5px;}
 .setup-sub{color:var(--text-mid);font-size:14px;margin-bottom:28px;}
 .rest-label{font-size:15px;font-weight:700;margin-bottom:12px;color:var(--text);}
 .rest-options{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px;}
-.rest-opt{
-  background:var(--white);border:2px solid var(--border);
-  border-radius:14px;padding:14px 8px;text-align:center;cursor:pointer;
-  transition:all .15s;
-}
+.rest-opt{background:var(--white);border:2px solid var(--border);border-radius:14px;padding:14px 8px;text-align:center;cursor:pointer;transition:all .15s;}
 .rest-opt.selected{border-color:var(--pink-deep);background:var(--pink-soft);}
 .rest-opt:active{transform:scale(0.95);}
 .ro-time{font-family:'Nunito',sans-serif;font-size:20px;font-weight:900;color:var(--pink-deep);}
 .ro-label{font-size:10px;color:var(--text-soft);margin-top:1px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;}
 .custom-rest{display:flex;align-items:center;gap:10px;margin-top:4px;}
-.custom-rest input{
-  flex:1;border:2px solid var(--border);border-radius:12px;
-  padding:12px 14px;font-size:16px;background:var(--white);
-  color:var(--text);outline:none;font-family:'DM Sans',sans-serif;
-  transition:border-color .2s;
-}
+.custom-rest input{flex:1;border:2px solid var(--border);border-radius:12px;padding:12px 14px;font-size:16px;background:var(--white);color:var(--text);outline:none;font-family:'DM Sans',sans-serif;transition:border-color .2s;}
 .custom-rest input:focus{border-color:var(--pink-deep);}
 .custom-rest label{font-size:13px;color:var(--text-mid);font-weight:600;}
-.start-btn{
-  width:100%;
-  background:linear-gradient(135deg,var(--pink-deep),var(--lav-deep));
-  color:#fff;border:none;border-radius:16px;padding:18px;
-  font-family:'Nunito',sans-serif;font-size:18px;font-weight:900;
-  cursor:pointer;margin-top:28px;letter-spacing:.3px;
-  box-shadow:0 6px 20px rgba(232,114,154,0.35);
-  transition:transform .15s,box-shadow .15s;
-}
-.start-btn:active{transform:scale(0.97);box-shadow:0 3px 10px rgba(232,114,154,0.25);}
+.start-btn{width:100%;background:linear-gradient(135deg,var(--pink-deep),var(--lav-deep));color:#fff;border:none;border-radius:16px;padding:18px;font-family:'Nunito',sans-serif;font-size:18px;font-weight:900;cursor:pointer;margin-top:28px;box-shadow:0 6px 20px rgba(232,114,154,0.35);transition:transform .15s;}
+.start-btn:active{transform:scale(0.97);}
 
-/* ─── WORKOUT VIEW ─── */
-.workout-header{
-  background:var(--white);
-  border-bottom:1.5px solid var(--border);
-  padding:max(env(safe-area-inset-top,16px),52px) 16px 14px;
-  position:sticky;top:0;z-index:50;
-}
+/* WORKOUT VIEW */
+.workout-header{background:var(--white);border-bottom:1.5px solid var(--border);padding:max(env(safe-area-inset-top,16px),52px) 16px 14px;position:sticky;top:0;z-index:50;}
 .workout-header-top{display:flex;align-items:center;margin-bottom:12px;}
 .workout-title{flex:1;text-align:center;}
 .wt-week{font-size:11px;color:var(--text-soft);font-weight:700;text-transform:uppercase;letter-spacing:.7px;}
-.wt-name{font-family:'Nunito',sans-serif;font-size:18px;font-weight:900;color:var(--text);}
+.wt-name{font-family:'Nunito',sans-serif;font-size:17px;font-weight:900;color:var(--text);}
 .progress-bar-wrap{height:5px;background:var(--border);border-radius:3px;overflow:hidden;}
-.progress-bar-fill{
-  height:100%;
-  background:linear-gradient(90deg,var(--pink-deep),var(--lav-deep),var(--sky-deep));
-  border-radius:3px;transition:width .5s ease;
-}
+.progress-bar-fill{height:100%;background:linear-gradient(90deg,var(--pink-deep),var(--lav-deep),var(--sky-deep));border-radius:3px;transition:width .5s ease;}
 .workout-body{padding:16px;display:flex;flex-direction:column;gap:14px;padding-bottom:40px;}
 
-/* ─── CIRCUIT BLOCK ─── */
-.circuit-block{background:var(--white);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);}
-.circuit-header{
-  padding:14px 18px;display:flex;align-items:center;gap:10px;
-}
-.circuit-header.c1{background:linear-gradient(135deg,#ffb3d1,#ffd4b3);}
-.circuit-header.c2{background:linear-gradient(135deg,#b3e5fc,#b8f0e0);}
-.circuit-header.core{background:linear-gradient(135deg,#d9c7ff,#b3e5fc);}
-.circuit-header h3{
-  font-family:'Nunito',sans-serif;font-size:16px;font-weight:900;
-  color:#fff;flex:1;text-shadow:0 1px 4px rgba(0,0,0,0.15);
-}
-.repeat-badge{
-  background:rgba(255,255,255,0.35);
-  color:#fff;font-size:12px;font-weight:800;
-  border-radius:20px;padding:4px 12px;
-  backdrop-filter:blur(4px);
-}
+/* CIRCUIT / EXERCISE BLOCK */
+.exercise-block{background:var(--white);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);}
+.block-header{padding:13px 18px;display:flex;align-items:center;gap:10px;}
+.block-header.a{background:linear-gradient(135deg,#ffb3d1,#ffd4b3);}
+.block-header.b{background:linear-gradient(135deg,#b3e5fc,#b8f0e0);}
+.block-header.c{background:linear-gradient(135deg,#d9c7ff,#ffb3d1);}
+.block-header.d{background:linear-gradient(135deg,#b8f0e0,#b3e5fc);}
+.block-header.optional{background:linear-gradient(135deg,#f0e4f8,#e8f8f4);}
+.block-header h3{font-family:'Nunito',sans-serif;font-size:15px;font-weight:900;color:#fff;flex:1;text-shadow:0 1px 4px rgba(0,0,0,0.15);}
+.block-header.optional h3{color:var(--text-mid);text-shadow:none;}
+.sets-badge{background:rgba(255,255,255,0.35);color:#fff;font-size:12px;font-weight:800;border-radius:20px;padding:4px 12px;backdrop-filter:blur(4px);}
+.block-header.optional .sets-badge{background:var(--border);color:var(--text-mid);}
 
-/* ─── EXERCISE ITEM ─── */
-.exercise-item{
-  padding:14px 18px;
-  border-bottom:1.5px solid var(--border);
-  transition:background .1s;
-}
+.exercise-item{padding:14px 18px;border-bottom:1.5px solid var(--border);}
 .exercise-item:last-child{border-bottom:none;}
 .ex-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;cursor:pointer;}
-.ex-name{
-  font-family:'Nunito',sans-serif;
-  font-size:15px;font-weight:800;
-  flex:1;line-height:1.3;color:var(--text);
-}
-.ex-reps{
-  font-size:12px;color:var(--lav-deep);font-weight:700;
-  white-space:nowrap;margin-top:2px;
-  background:var(--lavender);
-  padding:3px 9px;border-radius:20px;
-  flex-shrink:0;
-}
-.tip-toggle{
-  display:inline-flex;align-items:center;gap:4px;
-  font-size:11px;color:var(--pink-deep);font-weight:700;
-  margin-top:6px;cursor:pointer;letter-spacing:.3px;
-}
-.ex-tip{
-  font-size:13px;color:var(--text-mid);line-height:1.55;
-  margin-top:8px;padding-top:8px;
-  border-top:1.5px solid var(--border);
-  display:none;
-}
+.ex-name{font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;flex:1;line-height:1.3;color:var(--text);}
+.ex-reps{font-size:12px;color:var(--lav-deep);font-weight:700;white-space:nowrap;margin-top:2px;background:var(--lavender);padding:3px 9px;border-radius:20px;flex-shrink:0;}
+.ex-reps.optional-tag{color:var(--mint-deep);background:#e0f8f0;}
+.tip-toggle{display:inline-flex;align-items:center;gap:4px;font-size:11px;color:var(--pink-deep);font-weight:700;margin-top:6px;cursor:pointer;letter-spacing:.3px;}
+.ex-tip{font-size:13px;color:var(--text-mid);line-height:1.55;margin-top:8px;padding-top:8px;border-top:1.5px solid var(--border);display:none;}
 .ex-tip.open{display:block;}
 
-/* ─── WEIGHT + SET TRACKER ─── */
-.tracker-section{
-  margin-top:10px;padding-top:10px;
-  border-top:1.5px solid var(--border);
-}
+/* TRACKER */
+.tracker-section{margin-top:10px;padding-top:10px;border-top:1.5px solid var(--border);}
+.set-labels{display:grid;grid-template-columns:30px 1fr 1fr auto;gap:8px;margin-bottom:4px;padding:0 2px;}
+.set-label{font-size:10px;font-weight:700;color:var(--text-soft);text-align:center;text-transform:uppercase;letter-spacing:.5px;}
 .tracker-sets{display:flex;flex-direction:column;gap:6px;}
-.set-row{
-  display:grid;
-  grid-template-columns:30px 1fr 1fr auto;
-  gap:8px;align-items:center;
-}
-.set-num{
-  font-family:'Nunito',sans-serif;
-  font-size:13px;font-weight:800;
-  color:var(--text-soft);text-align:center;
-}
-.set-input{
-  border:1.5px solid var(--border);
-  border-radius:10px;padding:8px 10px;
-  font-size:14px;font-family:'DM Sans',sans-serif;
-  color:var(--text);background:var(--snow);
-  outline:none;width:100%;
-  transition:border-color .2s,background .2s;
-  text-align:center;
-}
+.set-row{display:grid;grid-template-columns:30px 1fr 1fr auto;gap:8px;align-items:center;}
+.set-num{font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;color:var(--text-soft);text-align:center;}
+.set-input{border:1.5px solid var(--border);border-radius:10px;padding:8px 10px;font-size:14px;font-family:'DM Sans',sans-serif;color:var(--text);background:var(--snow);outline:none;width:100%;transition:border-color .2s,background .2s;text-align:center;}
 .set-input:focus{border-color:var(--pink-deep);background:var(--pink-soft);}
 .set-input::placeholder{color:var(--text-soft);}
-.set-done-btn{
-  width:32px;height:32px;
-  border:2px solid var(--border);
-  border-radius:50%;background:var(--white);
-  cursor:pointer;font-size:16px;
-  display:flex;align-items:center;justify-content:center;
-  transition:all .15s;flex-shrink:0;
-  color:var(--text-soft);
-}
-.set-done-btn.done{
-  background:linear-gradient(135deg,var(--mint),var(--sky));
-  border-color:var(--mint-deep);
-  color:#fff;
-}
+.set-done-btn{width:32px;height:32px;border:2px solid var(--border);border-radius:50%;background:var(--white);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all .15s;flex-shrink:0;color:var(--text-soft);}
+.set-done-btn.done{background:linear-gradient(135deg,var(--mint),var(--sky));border-color:var(--mint-deep);color:#fff;}
 .set-done-btn:active{transform:scale(0.9);}
-.set-labels{
-  display:grid;
-  grid-template-columns:30px 1fr 1fr auto;
-  gap:8px;margin-bottom:4px;padding:0 2px;
-}
-.set-label{
-  font-size:10px;font-weight:700;
-  color:var(--text-soft);text-align:center;
-  text-transform:uppercase;letter-spacing:.5px;
-}
-.add-set-btn{
-  margin-top:8px;
-  background:none;border:1.5px dashed var(--border);
-  border-radius:10px;padding:7px;
-  font-size:12px;color:var(--text-mid);font-weight:700;
-  cursor:pointer;width:100%;letter-spacing:.3px;
-  transition:border-color .2s,color .2s;
-}
+.add-set-btn{margin-top:8px;background:none;border:1.5px dashed var(--border);border-radius:10px;padding:7px;font-size:12px;color:var(--text-mid);font-weight:700;cursor:pointer;width:100%;letter-spacing:.3px;transition:border-color .2s,color .2s;}
 .add-set-btn:hover{border-color:var(--pink-deep);color:var(--pink-deep);}
+.no-weight-tag{display:inline-block;font-size:11px;color:var(--mint-deep);font-weight:700;background:#e8faf5;padding:3px 10px;border-radius:20px;margin-top:8px;}
+.timed-tag{display:inline-block;font-size:11px;color:var(--lav-deep);font-weight:700;background:#f0eaff;padding:3px 10px;border-radius:20px;margin-top:8px;}
 
-.no-weight-tag{
-  display:inline-block;
-  font-size:11px;color:var(--mint-deep);font-weight:700;
-  background:#e8faf5;padding:3px 10px;border-radius:20px;margin-top:8px;
-}
-
-/* ─── REST OVERLAY ─── */
-#rest-overlay{
-  display:none;position:fixed;inset:0;
-  background:rgba(45,32,64,0.75);
-  backdrop-filter:blur(8px);
-  z-index:100;align-items:center;justify-content:center;
-}
+/* REST OVERLAY */
+#rest-overlay{display:none;position:fixed;inset:0;background:rgba(45,32,64,0.75);backdrop-filter:blur(8px);z-index:100;align-items:center;justify-content:center;}
 #rest-overlay.active{display:flex;}
-.rest-modal{
-  background:var(--white);border-radius:28px;
-  padding:36px 28px 28px;text-align:center;
-  width:90%;max-width:340px;
-  box-shadow:0 20px 60px rgba(45,32,64,0.2);
-}
-.rest-modal h3{
-  font-family:'Nunito',sans-serif;
-  font-size:22px;font-weight:900;margin-bottom:4px;
-}
+.rest-modal{background:var(--white);border-radius:28px;padding:36px 28px 28px;text-align:center;width:90%;max-width:340px;box-shadow:0 20px 60px rgba(45,32,64,0.2);}
+.rest-modal h3{font-family:'Nunito',sans-serif;font-size:22px;font-weight:900;margin-bottom:4px;}
 .rest-sub{font-size:13px;color:var(--text-mid);margin-bottom:24px;font-weight:500;}
-.rest-circle{
-  width:150px;height:150px;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  margin:0 auto 24px;position:relative;
-}
+.rest-circle{width:150px;height:150px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;position:relative;}
 .rest-circle svg{position:absolute;top:0;left:0;transform:rotate(-90deg);}
-.rest-countdown{
-  font-family:'Nunito',sans-serif;
-  font-size:52px;font-weight:900;
-  background:linear-gradient(135deg,var(--pink-deep),var(--lav-deep));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-  z-index:1;
-}
+.rest-countdown{font-family:'Nunito',sans-serif;font-size:52px;font-weight:900;background:linear-gradient(135deg,var(--pink-deep),var(--lav-deep));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;z-index:1;}
 .rest-actions{display:flex;gap:10px;}
-.rest-skip{
-  flex:1;background:var(--snow);border:2px solid var(--border);
-  border-radius:14px;padding:14px;
-  font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;
-  color:var(--text-mid);cursor:pointer;transition:all .15s;
-}
-.rest-skip:active{background:var(--border);}
-.rest-add{
-  background:var(--pink-soft);border:2px solid var(--pink);
-  border-radius:14px;padding:14px 16px;
-  font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;
-  color:var(--pink-deep);cursor:pointer;transition:all .15s;
-}
-.rest-add:active{background:var(--pink);}
+.rest-skip{flex:1;background:var(--snow);border:2px solid var(--border);border-radius:14px;padding:14px;font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;color:var(--text-mid);cursor:pointer;}
+.rest-add{background:var(--pink-soft);border:2px solid var(--pink);border-radius:14px;padding:14px 16px;font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;color:var(--pink-deep);cursor:pointer;}
 
-/* ─── DONE SCREEN ─── */
-#done-screen{
-  background:linear-gradient(160deg,#ffd9eb 0%,#e8d9ff 50%,#c8f0e8 100%);
-  align-items:center;justify-content:center;
-  text-align:center;padding:40px 24px;
-}
+/* DONE */
+#done-screen{background:linear-gradient(160deg,#ffd9eb 0%,#e8d9ff 50%,#c8f0e8 100%);align-items:center;justify-content:center;text-align:center;padding:40px 24px;}
 .done-icon{font-size:80px;margin-bottom:20px;animation:bounce 1s ease infinite alternate;}
 @keyframes bounce{from{transform:translateY(0);}to{transform:translateY(-12px);}}
 .done-h{font-family:'Nunito',sans-serif;font-size:32px;font-weight:900;margin-bottom:10px;color:var(--text);}
 .done-p{font-size:16px;color:var(--text-mid);margin-bottom:40px;line-height:1.65;}
-.done-btn{
-  background:linear-gradient(135deg,var(--pink-deep),var(--lav-deep));
-  color:#fff;border:none;border-radius:16px;padding:18px 44px;
-  font-family:'Nunito',sans-serif;font-size:18px;font-weight:900;
-  cursor:pointer;box-shadow:0 8px 24px rgba(140,90,200,0.35);
-  transition:transform .15s;
-}
+.done-btn{background:linear-gradient(135deg,var(--pink-deep),var(--lav-deep));color:#fff;border:none;border-radius:16px;padding:18px 44px;font-family:'Nunito',sans-serif;font-size:18px;font-weight:900;cursor:pointer;box-shadow:0 8px 24px rgba(140,90,200,0.35);transition:transform .15s;}
 .done-btn:active{transform:scale(0.96);}
-
-/* ─── UTILITY ─── */
 .flex-scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;}
 </style>
 </head>
@@ -418,8 +180,8 @@ body{
 <!-- HOME -->
 <div id="home" class="screen active">
   <div class="candy-header">
-    <h1>24-Week Training</h1>
-    <p>Pick a week to get started</p>
+    <h1>12-Week Training</h1>
+    <p>Select a week to get started</p>
   </div>
   <div class="flex-scroll">
     <div class="week-grid" id="week-grid"></div>
@@ -448,23 +210,23 @@ body{
   <div class="flex-scroll">
     <div class="setup-content">
       <h2 id="setup-workout-name">Workout</h2>
-      <p class="setup-sub">Choose rest time between exercises</p>
-      <p class="rest-label">Rest between exercises</p>
+      <p class="setup-sub">Choose your rest time between sets</p>
+      <p class="rest-label">Rest between sets</p>
       <div class="rest-options">
-        <div class="rest-opt selected" data-seconds="30" onclick="selectRest(this)">
-          <div class="ro-time">0:30</div><div class="ro-label">Short</div>
-        </div>
         <div class="rest-opt" data-seconds="60" onclick="selectRest(this)">
-          <div class="ro-time">1:00</div><div class="ro-label">Standard</div>
+          <div class="ro-time">1:00</div><div class="ro-label">Short</div>
         </div>
-        <div class="rest-opt" data-seconds="90" onclick="selectRest(this)">
-          <div class="ro-time">1:30</div><div class="ro-label">Long</div>
+        <div class="rest-opt selected" data-seconds="90" onclick="selectRest(this)">
+          <div class="ro-time">1:30</div><div class="ro-label">Standard</div>
         </div>
         <div class="rest-opt" data-seconds="120" onclick="selectRest(this)">
-          <div class="ro-time">2:00</div><div class="ro-label">Recovery</div>
+          <div class="ro-time">2:00</div><div class="ro-label">Long</div>
+        </div>
+        <div class="rest-opt" data-seconds="150" onclick="selectRest(this)">
+          <div class="ro-time">2:30</div><div class="ro-label">Heavy</div>
         </div>
         <div class="rest-opt" data-seconds="180" onclick="selectRest(this)">
-          <div class="ro-time">3:00</div><div class="ro-label">Heavy</div>
+          <div class="ro-time">3:00</div><div class="ro-label">Max</div>
         </div>
         <div class="rest-opt" data-seconds="0" onclick="selectRest(this)">
           <div class="ro-time">Off</div><div class="ro-label">No rest</div>
@@ -510,8 +272,8 @@ body{
 <!-- REST OVERLAY -->
 <div id="rest-overlay">
   <div class="rest-modal">
-    <h3>Rest Time 🌸</h3>
-    <p class="rest-sub" id="rest-next-label">Next up: —</p>
+    <h3>Rest Time</h3>
+    <p class="rest-sub" id="rest-next-label">Take a breather…</p>
     <div class="rest-circle">
       <svg width="150" height="150" viewBox="0 0 150 150">
         <circle cx="75" cy="75" r="65" fill="none" stroke="#f0e4f8" stroke-width="9"/>
@@ -524,7 +286,7 @@ body{
           </linearGradient>
         </defs>
       </svg>
-      <div class="rest-countdown" id="rest-countdown">60</div>
+      <div class="rest-countdown" id="rest-countdown">90</div>
     </div>
     <div class="rest-actions">
       <button class="rest-skip" onclick="skipRest()">Skip Rest</button>
@@ -534,452 +296,358 @@ body{
 </div>
 
 <script>
-// ════════════════════════════════════════════
-//  WORKOUT DATA — all 24 weeks
-// ════════════════════════════════════════════
+// ═══════════════════════════════════════
+//  WORKOUT PLAN DATA
+// ═══════════════════════════════════════
 
-// Exercises that don't use weight
-const BODYWEIGHT_KEYWORDS = [
-  'bodyweight','body weight','push-up','push up','pushup',
-  'plank','mountain climber','jackknife','jackknives','crunch',
-  'dip','russian twist','leg raise','oblique','sit squat',
-  'clam shell','hip abduction','glute bridge hold with knee',
-  'table top','commandos','jump squat','bulgarian split squat jump',
-  'raised single leg glute bridge','wall sit','pike to',
-  'ankle tap','shoulder tap','reach under','forearm plank',
-  'side plank','hanging leg'
-];
+// Exercise types:
+// weighted  → shows weight + reps tracker
+// bodyweight → shows "Bodyweight" tag, reps only
+// timed     → shows "Timed" tag, no inputs
 
-function usesWeight(name){
-  const low = name.toLowerCase();
-  return !BODYWEIGHT_KEYWORDS.some(kw=>low.includes(kw));
-}
-
-const workoutData = {
-  1:{
-    "Quads & Glutes":{circuits:[
-      {name:"Circuit #1",repeat:3,type:"c1",exercises:[
-        {name:"Dumbbell Reverse Lunges",reps:"8-10 reps each leg",tip:"Engage core, step back, push front heel into floor to engage glute. Stationary leg does all the work."},
-        {name:"Dumbbell Squat",reps:"10-12 reps",tip:"Feet slightly wider than shoulder width, sit hips back, chest up, core engaged. Push back up through heels squeezing glutes."},
-        {name:"Dumbbell Glute Bridge",reps:"10-12 reps",tip:"Lay on back, feet shoulder width, toes out, dumbbell under hips. Push heels in squeezing glutes."}
-      ]},
-      {name:"Circuit #2",repeat:3,type:"c2",exercises:[
-        {name:"Dumbbell Bulgarian Split Squats",reps:"8-10 reps each leg",tip:"Back foot on bench, hop front foot forward. Feel stretch as you lower, push front heel into floor."},
-        {name:"Dumbbell Hip Thrust",reps:"10-12 reps",tip:"Edge of bench at shoulder blades. Push hips up through heels, squeezing glutes. Core engaged."},
-        {name:"Dumbbell Deadlift",reps:"10-12 reps",tip:"Sit hips back, hinge at hips. Focus on stretch down back of legs. Squeeze glutes to stand."}
-      ]},
-      {name:"Core Finisher",repeat:3,type:"core",exercises:[
-        {name:"Russian Twists",reps:"10-12 reps each side",tip:"Lean back slightly, chest tall, squeeze core as you rotate. Feet fairly still."},
-        {name:"Alternating Knee Taps",reps:"12-15 reps each side",tip:"Core engaged, shoulders slightly off ground, alternate tapping knee with opposite hand."}
-      ]}
-    ]},
-    "Full Body":{circuits:[
-      {name:"Circuit #1",repeat:3,type:"c1",exercises:[
-        {name:"Body Weight Bench Step Ups",reps:"8-10 reps each leg",tip:"All reps one leg then switch. Push heel into bench to engage glutes."},
-        {name:"Dumbbell Squat and Press",reps:"8-10 reps",tip:"Squat down, as you stand press dumbbells overhead. Core tight."},
-        {name:"Pike to Opposite Ankle Tap",reps:"6-8 reps each side",tip:"Start in push up position. Hinge at hips, reach hand toward opposite ankle. Core engaged."}
-      ]},
-      {name:"Circuit #2",repeat:3,type:"c2",exercises:[
-        {name:"Wide Grip Lat Pull Down",reps:"8-10 reps",tip:"Overhand grip twice shoulder width. Pull shoulder blades down and back. Think armpits."},
-        {name:"Seated Narrow Grip Cable Rows",reps:"8-10 reps",tip:"Core engaged, knees bent. Pull handle to chest, elbows tucked. Don't hunch forward."},
-        {name:"Reverse Lunge with Oblique Twist",reps:"8-10 reps each side",tip:"Step back into lunge, twist to same side. Core engaged for balance."}
-      ]},
-      {name:"Core Finisher",repeat:3,type:"core",exercises:[
-        {name:"Russian Twists",reps:"10-12 reps each side",tip:"Lean back slightly, chest tall, squeeze core as you rotate."},
-        {name:"Bent Leg Jackknives",reps:"8-10 reps",tip:"Crunch bringing tucked knees toward chest while bringing shoulders off ground."}
-      ]}
-    ]},
-    "Hamstrings & Glutes":{circuits:[
-      {name:"Circuit #1",repeat:3,type:"c1",exercises:[
-        {name:"Dumbbell Single Leg Deadlift",reps:"8-10 reps each leg",tip:"Hinge at hip, slight bend in knee, focus on stretch in stationary leg. Core for balance."},
-        {name:"Dumbbell Lateral Lunges",reps:"8-10 reps each leg",tip:"Hold dumbbell near chest. Lunge to one side, push up through heel to switch."},
-        {name:"Dumbbell Hip Thrust",reps:"10-12 reps",tip:"Edge of bench at shoulder blades. Push hips up through heels squeezing glutes."}
-      ]},
-      {name:"Circuit #2",repeat:3,type:"c2",exercises:[
-        {name:"Barbell Deadlift",reps:"8-10 reps",tip:"Sit hips back, hinge at hips, chin slightly tucked. Squeeze through glutes to stand."},
-        {name:"Jump Squats",reps:"10 reps",tip:"Sit into squat, push heels into floor and jump up. Land with soft knees."},
-        {name:"Dumbbell Glute Bridge",reps:"10-12 reps",tip:"Feet shoulder width, toes slightly outward, dumbbell under hips. Push heels in squeezing glutes."}
-      ]},
-      {name:"Core Finisher",repeat:3,type:"core",exercises:[
-        {name:"Cross Body Crunches",reps:"8-10 reps each side",tip:"Shoulders off ground, elbow across to opposite knee. All movement from core."},
-        {name:"Glute Bridge Hold with Knee Raises",reps:"8-10 reps each leg",tip:"Set up in glute bridge, hold at top. Alternate raising knees. Core keeps balance."}
-      ]}
-    ]},
-    "Upper Body":{circuits:[
-      {name:"Circuit #1",repeat:3,type:"c1",exercises:[
-        {name:"Single Arm Dumbbell Rows",reps:"8-10 reps each arm",tip:"Core engaged, chin slightly tucked. Pull elbow toward ceiling squeezing back. All reps one side then switch."},
-        {name:"Dumbbell Lateral Raises",reps:"8-10 reps",tip:"Lead with elbows. Lift out and up, feeling squeeze in shoulder."},
-        {name:"Dumbbell Curl and Press",reps:"8-10 reps",tip:"Curl dumbbells up then push overhead. Control weight down."}
-      ]},
-      {name:"Circuit #2",repeat:3,type:"c2",exercises:[
-        {name:"Push-ups From Knees",reps:"8-10 reps",tip:"Shoulders above wrists. Core and glutes engaged. Lower chest to floor, push back up."},
-        {name:"Tricep Dips",reps:"8-10 reps",tip:"Lower until arm bent at 90 degrees. Push up through palms squeezing triceps."},
-        {name:"Dumbbell Alternating Front Raises",reps:"8-10 reps each arm",tip:"Arm parallel with floor. Avoid hunching shoulders. Control weight down."}
-      ]},
-      {name:"Core Finisher",repeat:3,type:"core",exercises:[
-        {name:"Forearm Plank",reps:"30 seconds",tip:"Brace core, belly button in. Straight line. Glutes clenched."},
-        {name:"Straight Leg Oblique Taps",reps:"8-10 reps each side",tip:"Lying on back, legs straight. Lower legs to one side. Obliques control movement."}
-      ]}
-    ]}
+const WORKOUTS = {
+  A: {
+    label: "Workout A",
+    name: "Lower Body — Glute & Quad Focus",
+    tag: "a",
+    exercises: [
+      { name:"Hip Thrust",          sets:4, reps:"8–10 reps",    type:"weighted",   tip:"Barbell or dumbbell over hips, bench at shoulder blades. Drive heels into floor, squeeze glutes at the top. Keep neutral pelvis — don't hyperextend." },
+      { name:"Leg Press",           sets:3, reps:"10–12 reps",   type:"weighted",   tip:"Feet shoulder-width on the platform. Lower until knees reach 90°. Push through heels. Don't lock knees at the top." },
+      { name:"Bulgarian Split Squat",sets:3,reps:"8–10 reps / leg",type:"weighted", tip:"Rear foot elevated on bench. Hop front foot forward. Lower until back knee nearly touches floor. Drive front heel to stand. All reps one side then switch." },
+      { name:"Walking Lunges",      sets:3, reps:"10 reps / leg", type:"weighted",  tip:"Hold dumbbells at sides or barbell on back. Step forward, lower back knee toward floor. Push through front heel to step into next lunge. Keep torso upright." },
+      { name:"Cable Glute Kickbacks",sets:3,reps:"12–15 reps",   type:"weighted",   tip:"Ankle strap attached. Hinge slightly forward at hips, core tight. Kick straight back through the heel. Squeeze glute at the top. Don't arch lower back." },
+      { name:"Standing Calf Raise", sets:3, reps:"12–15 reps",   type:"weighted",   tip:"Optional. Stand on edge of step, heels off. Lower heels feeling a stretch. Drive up onto toes squeezing calves. Control the descent.", optional:true }
+    ]
+  },
+  B: {
+    label: "Workout B",
+    name: "Upper Body — Pull Focus",
+    tag: "b",
+    exercises: [
+      { name:"Lat Pulldown",         sets:3, reps:"8–10 reps",   type:"weighted",   tip:"Wide overhand grip. Pull bar to upper chest leading with elbows. Think about pulling through your armpits. Control the way back up." },
+      { name:"Seated Cable Row",     sets:3, reps:"10 reps",     type:"weighted",   tip:"Sit tall, core engaged, slight knee bend. Pull handle to lower chest, elbows tucked close. Squeeze shoulder blades together. Don't lean back excessively." },
+      { name:"Single Arm Dumbbell Row",sets:3,reps:"10 reps / arm",type:"weighted", tip:"Brace on bench with one hand. Row dumbbell up toward hip, elbow close to body. Focus on squeezing upper back, not just lifting the weight. All reps one side then switch." },
+      { name:"Dumbbell Bicep Curl",  sets:3, reps:"12 reps",     type:"weighted",   tip:"Stand tall, elbows pinned to sides. Curl both or alternate. Squeeze at the top, lower slowly. Don't swing." },
+      { name:"Face Pull",            sets:3, reps:"12–15 reps",  type:"weighted",   tip:"Cable at face height, rope attachment. Overhand grip, pull toward forehead with elbows flared out. Upper back and rear delts control the movement." },
+      { name:"Plank",                sets:3, reps:"30–45 sec",   type:"timed",      tip:"Optional. Forearms on floor, body in a straight line. Brace core, squeeze glutes, breathe. Don't let hips sag or pike up.", optional:true }
+    ]
+  },
+  C: {
+    label: "Workout C",
+    name: "Lower Body — Glute & Hamstring Focus",
+    tag: "c",
+    exercises: [
+      { name:"Romanian Deadlift",    sets:4, reps:"8–10 reps",   type:"weighted",   tip:"Hinge at hips with soft knees, pushing hips back. Bar or dumbbells stay close to legs. Feel stretch in hamstrings. Drive hips forward squeezing glutes to stand. Keep back neutral." },
+      { name:"Hamstring Curl",       sets:3, reps:"10–12 reps",  type:"weighted",   tip:"Seated or lying machine. Curl weight through full range of motion. Squeeze hamstrings at peak contraction. Lower slowly — don't let the weight drop." },
+      { name:"Dumbbell Sumo Squat",  sets:3, reps:"10 reps",     type:"weighted",   tip:"Wide stance, toes pointed out. Hold one dumbbell with both hands between legs. Sit hips back and down, chest up. Drive through heels squeezing glutes to stand." },
+      { name:"Glute Bridge",         sets:3, reps:"10–12 reps",  type:"weighted",   tip:"Lie on back, feet shoulder-width, toes slightly out. Dumbbell or plate on hips. Push heels into floor, drive hips up squeezing glutes. Hold briefly at top. Lower with control." },
+      { name:"Fire Hydrants / Cable Abduction",sets:3,reps:"15 reps / side",type:"weighted",tip:"On all fours (fire hydrants) or standing with cable ankle strap. Lift leg out to the side squeezing glute. Keep core stable. All reps one side then switch." },
+      { name:"Calf Raises",          sets:3, reps:"12–15 reps",  type:"weighted",   tip:"Optional. Standing on edge of step. Lower heels below step level, then drive up onto toes. Slow and controlled.", optional:true }
+    ]
+  },
+  D: {
+    label: "Workout D",
+    name: "Upper Body — Push & Shoulders",
+    tag: "d",
+    exercises: [
+      { name:"Incline Dumbbell Press",sets:3,reps:"8–10 reps",   type:"weighted",   tip:"Bench at 30–45°. Palms facing forward, elbows not excessively flared. Lower dumbbells to sides of upper chest. Press back up and slightly together at top." },
+      { name:"Seated Dumbbell Shoulder Press",sets:3,reps:"10 reps",type:"weighted",tip:"Sit tall, palms facing forward, elbows at 90°. Press both dumbbells overhead until arms are straight. Lower with control. Keep core engaged — don't arch lower back." },
+      { name:"Lateral Raises",       sets:3, reps:"12–15 reps",  type:"weighted",   tip:"Lead with elbows, not wrists. Lift arms out to the side to shoulder height. Slight forward lean is ok. Lower slowly — the descent is half the work." },
+      { name:"Tricep Pushdowns",     sets:3, reps:"12 reps",     type:"weighted",   tip:"Cable at highest setting, rope or bar. Elbows pinned to sides. Push down extending arms fully. Squeeze triceps at the bottom. Only the elbows hinge." },
+      { name:"Chest Supported Reverse Fly",sets:3,reps:"12–15 reps",type:"weighted",tip:"Lie chest-down on incline bench (or hinge forward). Let dumbbells hang, palms facing each other. Pull arms back and out, squeezing shoulder blades together at top." },
+      { name:"Russian Twists",       sets:3, reps:"20 reps",     type:"bodyweight", tip:"Optional. Sit with knees bent, lean back slightly, feet off floor. Rotate torso side to side. Hold a dumbbell or plate for extra resistance.", optional:true }
+    ]
   }
 };
 
-// ── Fill weeks 2-24 with representative data ──
-// (Weeks 2-13 abbreviated; pattern matches original plan)
-const weekTemplates = {
-  2:{
-    "Quads & Glutes":{circuits:[
-      {name:"Circuit #1",repeat:3,type:"c1",exercises:[
-        {name:"Barbell Hip Thrust",reps:"10-12 reps",tip:"Barbell over hips, bench at shoulder blades. Push up through heels squeezing glutes."},
-        {name:"Dumbbell Front Squat",reps:"10-12 reps",tip:"Dumbbells on shoulders. Core engaged, chest up. Load weight into heels."},
-        {name:"Dumbbell Bulgarian Split Squat",reps:"8-10 reps each leg",tip:"Back foot on bench. Feel stretch as you lower. Push front heel into floor."}
-      ]},
-      {name:"Circuit #2",repeat:3,type:"c2",exercises:[
-        {name:"Dumbbell In and Out Squat Jumps",reps:"8-10 reps",tip:"Hold dumbbell to chest. Jump out to sumo, jump back in. Push through heels."},
-        {name:"Dumbbell Pulse Squat",reps:"10-12 reps",tip:"Hold dumbbell, sit low in squat. Quick pulses through heels. Core engaged."},
-        {name:"Dumbbell Squat with Reverse Lunge",reps:"6-8 reps",tip:"Hold dumbbell to chest. Squat, then step back into reverse lunge. Push through heels."}
-      ]},
-      {name:"Core Finisher",repeat:3,type:"core",exercises:[
-        {name:"Glute Kickback Mountain Climbers",reps:"10-12 reps each side",tip:"High plank. Kick foot back squeezing glute, draw knee toward elbows. All reps one leg then switch."},
-        {name:"Side to Side Knee Tucks",reps:"10-12 reps each side",tip:"Sit on floor, legs straight, object in front. Tuck feet in toward chest and out to opposite side."}
-      ]}
-    ]},
-    "Full Body":{circuits:[
-      {name:"Circuit #1",repeat:3,type:"c1",exercises:[
-        {name:"Seated Narrow Grip Cable Rows",reps:"8-10 reps",tip:"Core engaged, knees bent. Pull handle to chest, elbows tucked. Back neutral."},
-        {name:"Dumbbell Squat",reps:"10-12 reps",tip:"Feet wider than shoulder width, sit hips back, chest up. Push through heels."},
-        {name:"Dumbbell Glute Bridge",reps:"10-12 reps",tip:"Feet shoulder width, toes out, dumbbell under hips. Push heels in squeezing glutes."}
-      ]},
-      {name:"Circuit #2",repeat:3,type:"c2",exercises:[
-        {name:"Bent Over Neutral Grip Dumbbell Row",reps:"8-10 reps",tip:"Hinge at hips, core engaged. Row toward chest, squeeze upper back."},
-        {name:"Dumbbell Lateral Lunges",reps:"8-10 reps each leg",tip:"Hold dumbbell near chest. Lunge to one side. Push up through heel."},
-        {name:"Alternating Dumbbell Curl to Hammer Curl",reps:"6-10 reps",tip:"Curl palms up, switch to palms facing at top. Alternate."}
-      ]},
-      {name:"Core Finisher",repeat:3,type:"core",exercises:[
-        {name:"Laying Leg Raises with Chest Press",reps:"10-12 reps",tip:"Lay on back, legs straight. Raise legs while pressing dumbbells overhead."},
-        {name:"Reverse Crunches",reps:"8-10 reps",tip:"Hold dumbbell behind head. Lift legs and hips. Slow and controlled."}
-      ]}
-    ]},
-    "Hamstrings & Glutes":{circuits:[
-      {name:"Circuit #1",repeat:3,type:"c1",exercises:[
-        {name:"Barbell Hip Thrust",reps:"10-12 reps",tip:"Barbell over hips, bench at shoulder blades. Push up through heels squeezing glutes."},
-        {name:"Dumbbell Bulgarian Split Squat",reps:"8-10 reps each leg",tip:"Back foot on bench. Feel stretch as you lower. Push front heel into floor."},
-        {name:"Incline Glute Hamstring Raises",reps:"10-12 reps",tip:"Hinge down feeling stretch in glutes. Pull back up squeezing glutes."}
-      ]},
-      {name:"Circuit #2",repeat:3,type:"c2",exercises:[
-        {name:"Calf Raises",reps:"10-12 reps each leg",tip:"Stand on platform, heels off edge. Lower heels feeling stretch. Pull up through calves."},
-        {name:"Cable Glute Kickbacks",reps:"10-12 reps each leg",tip:"Ankle strap attached. Core tight, hinge forward, kick back through heel."},
-        {name:"Cable Deadlift",reps:"10-12 reps",tip:"Cable at lowest setting. Hinge at hips, slight knee bend. Push through glutes back to upright."}
-      ]},
-      {name:"Core Finisher",repeat:3,type:"core",exercises:[
-        {name:"Cable Crunches",reps:"10-12 reps",tip:"Cable highest, rope. Crunch weight down bringing chest to knees. Slow and controlled."},
-        {name:"Oblique Ab Dips",reps:"8-12 reps each side",tip:"On incline platform, bend to one side. Pull back up using oblique."}
-      ]}
-    ]},
-    "Upper Body":{circuits:[
-      {name:"Circuit #1",repeat:3,type:"c1",exercises:[
-        {name:"Dumbbell Clean and Press",reps:"8-10 reps",tip:"Explosively pull dumbbells to collar bone, tuck elbows, press overhead. Core very tight."},
-        {name:"Alternating Dumbbell Curl with Hammer Curl",reps:"6-8 reps",tip:"Curl palms up, switch to palms facing on the way down. Only switch at top."},
-        {name:"Plate Front Raise with Steering Wheel",reps:"6-10 reps",tip:"Front raise to parallel, hold and perform 6 turns, lower back to start."}
-      ]},
-      {name:"Circuit #2",repeat:3,type:"c2",exercises:[
-        {name:"Narrow Grip Lat Pulldown",reps:"8-10 reps",tip:"Palms facing each other. Pull down through sides/armpits. Core tight."},
-        {name:"Dumbbell Reverse Fly",reps:"8-10 reps",tip:"Hinge forward slightly, bring weight back squeezing shoulder blades. Core engaged."},
-        {name:"Incline Dumbbell Chest Press",reps:"6-10 reps",tip:"45-degree incline bench. Palms forward. Lower to sides of chest, press back up."}
-      ]},
-      {name:"Core Finisher",repeat:3,type:"core",exercises:[
-        {name:"Cross Body Crunch",reps:"10-12 reps each side",tip:"Shoulders off ground, elbow across to opposite knee. Core controls."},
-        {name:"Side to Side Knee Tuck on Bench",reps:"10-12 reps each side",tip:"Tuck knees to chest and kick feet to one side. Core brings feet back up."}
-      ]}
-    ]}
-  }
-};
-
-// Auto-generate weeks 3-24 as progressing copies
-function generateWeek(base, weekNum){
-  const sets = weekNum >= 5 ? 4 : 3;
-  return JSON.parse(JSON.stringify(base).replace(/"repeat":\d/g, `"repeat":${sets}`));
+// Progression per phase (weeks 1-4 base, 5-8 add load, 9-12 peak)
+function getSetsForWeek(baseSets, week) {
+  if (week >= 9) return baseSets + 1;
+  return baseSets;
 }
 
-for(let w=3;w<=24;w++){
-  workoutData[w] = generateWeek(
-    w <= 4 ? weekTemplates[2] : (w<=8?weekTemplates[2]:weekTemplates[2]),
-    w
-  );
-}
-// Apply template overrides for weeks with actual data
-Object.assign(workoutData, weekTemplates);
-workoutData[1] = workoutData[1]; // keep week 1
-
-// ════════════════════════════════════════════
+// ═══════════════════════════════════════
 //  STATE
-// ════════════════════════════════════════════
-let currentWeek=1, currentWorkoutKey='', restSeconds=30, restTimer=null, restRemaining=0, restTotal=0;
-const setData = {}; // setData[exerciseId][setIndex] = {weight, reps, done}
+// ═══════════════════════════════════════
+let currentWeek = 1;
+let currentWorkoutKey = 'A';
+let restSeconds = 90;
+let restTimer = null;
+let restRemaining = 0;
+let restTotal = 0;
+const setData = {};
+let totalExCount = 0;
 
-// ════════════════════════════════════════════
+// ═══════════════════════════════════════
 //  HOME
-// ════════════════════════════════════════════
-function buildHome(){
-  const grid=document.getElementById('week-grid');
-  grid.innerHTML='';
-  for(let w=1;w<=24;w++){
-    const btn=document.createElement('div');
-    btn.className='week-btn';
-    btn.innerHTML=`<div class="wnum">${w}</div><div class="wlabel">Week</div>`;
-    btn.onclick=()=>showWeek(w);
+// ═══════════════════════════════════════
+function buildHome() {
+  const grid = document.getElementById('week-grid');
+  grid.innerHTML = '';
+  for (let w = 1; w <= 12; w++) {
+    const phase = w <= 4 ? 'Foundation' : w <= 8 ? 'Build' : 'Peak';
+    const btn = document.createElement('div');
+    btn.className = 'week-btn';
+    btn.innerHTML = `<div class="wnum">${w}</div><div class="wlabel">${phase}</div>`;
+    btn.onclick = () => showWeek(w);
     grid.appendChild(btn);
   }
 }
 
-// ════════════════════════════════════════════
+// ═══════════════════════════════════════
 //  WEEK VIEW
-// ════════════════════════════════════════════
-function showWeek(w){
-  currentWeek=w;
-  document.getElementById('week-view-title').textContent=`Week ${w}`;
-  const container=document.getElementById('workout-cards');
-  container.innerHTML='';
-  const wData=workoutData[w]||{};
-  const tagMap={'Quads & Glutes':'q','Full Body':'f','Hamstrings & Glutes':'h','Upper Body':'u'};
-  const iconMap={'Quads & Glutes':'🍑','Full Body':'⚡','Hamstrings & Glutes':'🦵','Upper Body':'💪'};
-  Object.keys(wData).forEach(key=>{
-    const tag=tagMap[key]||'q';
-    const icon=iconMap[key]||'🏋️';
-    const totalEx=wData[key].circuits.reduce((a,c)=>a+c.exercises.length,0);
-    const card=document.createElement('div');
-    card.className='workout-card';
-    card.innerHTML=`
-      <div class="wc-stripe ${tag}"></div>
-      <div class="wc-tag ${tag}">${icon} ${key}</div>
-      <h3>${key}</h3>
-      <div class="wc-meta">${wData[key].circuits.length} circuits · ${totalEx} exercises</div>`;
-    card.onclick=()=>showSetupScreen(w,key);
+// ═══════════════════════════════════════
+function showWeek(w) {
+  currentWeek = w;
+  document.getElementById('week-view-title').textContent = `Week ${w}`;
+  const container = document.getElementById('workout-cards');
+  container.innerHTML = '';
+
+  const phase = w <= 4 ? 'Foundation' : w <= 8 ? 'Build' : 'Peak';
+  const icons = { A:'🍑', B:'💪', C:'🦵', D:'🏋️' };
+
+  Object.keys(WORKOUTS).forEach(key => {
+    const wo = WORKOUTS[key];
+    const card = document.createElement('div');
+    card.className = 'workout-card';
+    const mainEx = wo.exercises.filter(e => !e.optional).length;
+    const optEx  = wo.exercises.filter(e => e.optional).length;
+    card.innerHTML = `
+      <div class="wc-stripe ${wo.tag}"></div>
+      <div class="wc-label ${wo.tag}">${icons[key]} ${wo.label}</div>
+      <h3>${wo.name}</h3>
+      <div class="wc-meta">${mainEx} exercises + ${optEx} optional · ${phase} phase</div>`;
+    card.onclick = () => showSetupScreen(w, key);
     container.appendChild(card);
   });
+
   showScreen('week-view');
 }
 
-function showHome(){showScreen('home');}
+function showHome() { showScreen('home'); }
 
-// ════════════════════════════════════════════
+// ═══════════════════════════════════════
 //  SESSION SETUP
-// ════════════════════════════════════════════
-function showSetupScreen(w,key){
-  currentWeek=w; currentWorkoutKey=key;
-  document.getElementById('setup-title').textContent=`Week ${w}`;
-  document.getElementById('setup-workout-name').textContent=key;
-  document.getElementById('setup-back-btn').onclick=()=>showWeek(w);
-  document.getElementById('custom-rest-input').value='';
-  document.querySelectorAll('.rest-opt').forEach(o=>o.classList.toggle('selected', o.dataset.seconds==='30'));
-  restSeconds=30;
+// ═══════════════════════════════════════
+function showSetupScreen(w, key) {
+  currentWeek = w;
+  currentWorkoutKey = key;
+  const wo = WORKOUTS[key];
+  document.getElementById('setup-title').textContent = `Week ${w} · Workout ${key}`;
+  document.getElementById('setup-workout-name').textContent = wo.name;
+  document.getElementById('setup-back-btn').onclick = () => showWeek(w);
+  document.getElementById('custom-rest-input').value = '';
+  document.querySelectorAll('.rest-opt').forEach(o =>
+    o.classList.toggle('selected', o.dataset.seconds === '90')
+  );
+  restSeconds = 90;
   showScreen('session-setup');
 }
 
-function selectRest(el){
-  document.querySelectorAll('.rest-opt').forEach(o=>o.classList.remove('selected'));
+function selectRest(el) {
+  document.querySelectorAll('.rest-opt').forEach(o => o.classList.remove('selected'));
   el.classList.add('selected');
-  restSeconds=parseInt(el.dataset.seconds);
-  document.getElementById('custom-rest-input').value='';
+  restSeconds = parseInt(el.dataset.seconds);
+  document.getElementById('custom-rest-input').value = '';
 }
-function setCustomRest(v){
-  if(v&&v>0){
-    restSeconds=parseInt(v);
-    document.querySelectorAll('.rest-opt').forEach(o=>o.classList.remove('selected'));
+
+function setCustomRest(v) {
+  if (v && v > 0) {
+    restSeconds = parseInt(v);
+    document.querySelectorAll('.rest-opt').forEach(o => o.classList.remove('selected'));
   }
 }
 
-function showSetup(){showScreen('session-setup');}
+function showSetup() { showScreen('session-setup'); }
 
-// ════════════════════════════════════════════
+// ═══════════════════════════════════════
 //  WORKOUT VIEW
-// ════════════════════════════════════════════
-let totalExerciseCount=0, completedExercises=0;
+// ═══════════════════════════════════════
+let completedExercises = 0;
 
-function startWorkout(){
+function startWorkout() {
   buildWorkoutView();
   showScreen('workout-view');
 }
 
-function buildWorkoutView(){
-  const data=workoutData[currentWeek][currentWorkoutKey];
-  document.getElementById('wv-week-label').textContent=`WEEK ${currentWeek}`;
-  document.getElementById('wv-name').textContent=currentWorkoutKey;
-  document.getElementById('progress-fill').style.width='0%';
+function buildWorkoutView() {
+  const wo = WORKOUTS[currentWorkoutKey];
+  document.getElementById('wv-week-label').textContent = `WEEK ${currentWeek} · WORKOUT ${currentWorkoutKey}`;
+  document.getElementById('wv-name').textContent = wo.name;
+  document.getElementById('progress-fill').style.width = '0%';
 
-  totalExerciseCount=0; completedExercises=0;
-  data.circuits.forEach(c=>totalExerciseCount+=c.exercises.length);
+  completedExercises = 0;
+  totalExCount = wo.exercises.length;
 
-  const body=document.getElementById('workout-body');
-  body.innerHTML='';
+  // clear old set data for this session
+  Object.keys(setData).forEach(k => delete setData[k]);
 
-  data.circuits.forEach((circuit,ci)=>{
-    const block=document.createElement('div');
-    block.className='circuit-block';
-    block.innerHTML=`
-      <div class="circuit-header ${circuit.type}">
-        <h3>${circuit.name}</h3>
-        <div class="repeat-badge">×${circuit.repeat}</div>
+  const body = document.getElementById('workout-body');
+  body.innerHTML = '';
+
+  wo.exercises.forEach((ex, ei) => {
+    const exId = `${currentWorkoutKey}-${ei}`;
+    const sets = getSetsForWeek(ex.sets, currentWeek);
+    const isOptional = !!ex.optional;
+    const headerClass = isOptional ? 'optional' : wo.tag;
+
+    const block = document.createElement('div');
+    block.className = 'exercise-block';
+    block.innerHTML = `
+      <div class="block-header ${headerClass}">
+        <h3>${isOptional ? '✦ Optional — ' : ''}${ex.name}</h3>
+        <div class="sets-badge">${sets} × ${ex.reps.replace('reps','').replace('rep','').trim()} reps</div>
       </div>
-      <div class="exercise-list" id="exlist-${ci}"></div>`;
-    body.appendChild(block);
-
-    const list=block.querySelector(`#exlist-${ci}`);
-    circuit.exercises.forEach((ex,ei)=>{
-      const exId=`${ci}-${ei}`;
-      const weighted=usesWeight(ex.name);
-      const item=document.createElement('div');
-      item.className='exercise-item';
-      item.id=`ex-${exId}`;
-      item.innerHTML=`
+      <div class="exercise-item" id="ex-${exId}">
         <div class="ex-top" onclick="toggleTip('${exId}')">
-          <div class="ex-name">${ex.name}</div>
-          <div class="ex-reps">${ex.reps}</div>
+          <div class="ex-name">${ex.reps}</div>
+          <div class="ex-reps ${isOptional?'optional-tag':''}">${isOptional?'Optional':sets+' sets'}</div>
         </div>
         <div class="tip-toggle" onclick="toggleTip('${exId}')">📖 Form tip</div>
         <div class="ex-tip" id="tip-${exId}">${ex.tip}</div>
         <div class="tracker-section" id="tracker-${exId}">
-          ${weighted ? buildTrackerHTML(exId, circuit.repeat) : `<div class="no-weight-tag">🏃 Bodyweight exercise</div>`}
-        </div>`;
-      list.appendChild(item);
+          ${buildTrackerHTML(exId, sets, ex.type)}
+        </div>
+      </div>`;
+    body.appendChild(block);
 
-      if(weighted) initSetData(exId, circuit.repeat);
-    });
+    if (ex.type === 'weighted') initSetData(exId, sets);
   });
 }
 
-function buildTrackerHTML(exId, sets){
-  let html=`
-    <div class="tracker-sets">
-      <div class="set-labels">
-        <div class="set-label">Set</div>
-        <div class="set-label">Weight (kg)</div>
-        <div class="set-label">Reps</div>
-        <div class="set-label">✓</div>
-      </div>`;
-  for(let s=0;s<sets;s++){
-    html+=`
-      <div class="set-row" id="setrow-${exId}-${s}">
-        <div class="set-num">${s+1}</div>
-        <input class="set-input" type="number" placeholder="kg" min="0"
-          id="w-${exId}-${s}" onchange="saveSet('${exId}',${s})">
-        <input class="set-input" type="number" placeholder="reps" min="0"
-          id="r-${exId}-${s}" onchange="saveSet('${exId}',${s})">
-        <button class="set-done-btn" id="done-${exId}-${s}"
-          onclick="toggleSetDone('${exId}',${s})">○</button>
-      </div>`;
+function buildTrackerHTML(exId, sets, type) {
+  if (type === 'timed') {
+    return `<div class="timed-tag">⏱ Timed exercise — use rest timer</div>`;
   }
-  html+=`</div>
+  if (type === 'bodyweight') {
+    return `<div class="no-weight-tag">🏃 Bodyweight — no weight needed</div>`;
+  }
+  // weighted
+  let html = `
+    <div class="set-labels">
+      <div class="set-label">Set</div>
+      <div class="set-label">Weight (kg)</div>
+      <div class="set-label">Reps done</div>
+      <div class="set-label">✓</div>
+    </div>
+    <div class="tracker-sets" id="sets-${exId}">`;
+  for (let s = 0; s < sets; s++) {
+    html += setRowHTML(exId, s);
+  }
+  html += `</div>
     <button class="add-set-btn" onclick="addSet('${exId}')">+ Add set</button>`;
   return html;
 }
 
-function initSetData(exId, sets){
-  if(!setData[exId]){
-    setData[exId]=[];
-    for(let s=0;s<sets;s++) setData[exId].push({weight:'',reps:'',done:false});
-  }
+function setRowHTML(exId, s) {
+  return `
+    <div class="set-row" id="setrow-${exId}-${s}">
+      <div class="set-num">${s+1}</div>
+      <input class="set-input" type="number" placeholder="kg" min="0" step="0.5"
+        id="w-${exId}-${s}" onchange="saveSet('${exId}',${s})">
+      <input class="set-input" type="number" placeholder="reps" min="0"
+        id="r-${exId}-${s}" onchange="saveSet('${exId}',${s})">
+      <button class="set-done-btn" id="done-${exId}-${s}"
+        onclick="toggleSetDone('${exId}',${s})">○</button>
+    </div>`;
 }
 
-function saveSet(exId, si){
-  if(!setData[exId]) return;
-  const w=document.getElementById(`w-${exId}-${si}`);
-  const r=document.getElementById(`r-${exId}-${si}`);
-  if(w) setData[exId][si].weight=w.value;
-  if(r) setData[exId][si].reps=r.value;
+function initSetData(exId, sets) {
+  setData[exId] = [];
+  for (let s = 0; s < sets; s++) setData[exId].push({ weight:'', reps:'', done:false });
 }
 
-function toggleSetDone(exId, si){
-  if(!setData[exId]) return;
-  saveSet(exId,si);
-  setData[exId][si].done=!setData[exId][si].done;
-  const btn=document.getElementById(`done-${exId}-${si}`);
-  if(setData[exId][si].done){
-    btn.classList.add('done'); btn.textContent='✓';
-    const row=document.getElementById(`setrow-${exId}-${si}`);
-    if(row) row.style.opacity='0.55';
+function saveSet(exId, si) {
+  if (!setData[exId]) return;
+  const w = document.getElementById(`w-${exId}-${si}`);
+  const r = document.getElementById(`r-${exId}-${si}`);
+  if (w) setData[exId][si].weight = w.value;
+  if (r) setData[exId][si].reps = r.value;
+}
+
+function toggleSetDone(exId, si) {
+  if (!setData[exId]) return;
+  saveSet(exId, si);
+  setData[exId][si].done = !setData[exId][si].done;
+  const btn = document.getElementById(`done-${exId}-${si}`);
+  const row = document.getElementById(`setrow-${exId}-${si}`);
+  if (setData[exId][si].done) {
+    btn.classList.add('done'); btn.textContent = '✓';
+    if (row) row.style.opacity = '0.5';
     updateProgress();
-    if(restSeconds>0) triggerRest(exId,si);
+    if (restSeconds > 0) triggerRest();
   } else {
-    btn.classList.remove('done'); btn.textContent='○';
-    const row=document.getElementById(`setrow-${exId}-${si}`);
-    if(row) row.style.opacity='1';
+    btn.classList.remove('done'); btn.textContent = '○';
+    if (row) row.style.opacity = '1';
   }
 }
 
-function addSet(exId){
-  if(!setData[exId]) setData[exId]=[];
-  const si=setData[exId].length;
-  setData[exId].push({weight:'',reps:'',done:false});
-
-  const tracker=document.getElementById(`tracker-${exId}`);
-  const setsDiv=tracker.querySelector('.tracker-sets');
-  const addBtn=tracker.querySelector('.add-set-btn');
-  const row=document.createElement('div');
-  row.className='set-row';
-  row.id=`setrow-${exId}-${si}`;
-  row.innerHTML=`
-    <div class="set-num">${si+1}</div>
-    <input class="set-input" type="number" placeholder="kg" min="0"
-      id="w-${exId}-${si}" onchange="saveSet('${exId}',${si})">
-    <input class="set-input" type="number" placeholder="reps" min="0"
-      id="r-${exId}-${si}" onchange="saveSet('${exId}',${si})">
-    <button class="set-done-btn" id="done-${exId}-${si}"
-      onclick="toggleSetDone('${exId}',${si})">○</button>`;
-  setsDiv.insertBefore(row, addBtn);
+function addSet(exId) {
+  if (!setData[exId]) setData[exId] = [];
+  const si = setData[exId].length;
+  setData[exId].push({ weight:'', reps:'', done:false });
+  const setsDiv = document.getElementById(`sets-${exId}`);
+  if (!setsDiv) return;
+  const div = document.createElement('div');
+  div.innerHTML = setRowHTML(exId, si);
+  setsDiv.appendChild(div.firstElementChild);
 }
 
-function updateProgress(){
-  completedExercises=Object.values(setData).filter(sets=>sets.some(s=>s.done)).length;
-  const pct=totalExerciseCount>0?(completedExercises/totalExerciseCount*100):0;
-  document.getElementById('progress-fill').style.width=pct+'%';
-  if(pct>=100) setTimeout(()=>showScreen('done-screen'),1500);
+function updateProgress() {
+  const done = Object.values(setData).filter(sets => sets.some(s => s.done)).length;
+  const pct = totalExCount > 0 ? (done / totalExCount * 100) : 0;
+  document.getElementById('progress-fill').style.width = pct + '%';
+  if (pct >= 100) setTimeout(() => showScreen('done-screen'), 1500);
 }
 
-function toggleTip(exId){
-  const tip=document.getElementById(`tip-${exId}`);
-  tip.classList.toggle('open');
+function toggleTip(exId) {
+  document.getElementById(`tip-${exId}`).classList.toggle('open');
 }
 
-// ════════════════════════════════════════════
+// ═══════════════════════════════════════
 //  REST TIMER
-// ════════════════════════════════════════════
-function triggerRest(exId,si){
-  if(restSeconds<=0) return;
-  restRemaining=restSeconds; restTotal=restSeconds;
-  document.getElementById('rest-countdown').textContent=restRemaining;
-  document.getElementById('rest-ring').style.strokeDashoffset='0';
-  document.getElementById('rest-next-label').textContent='Great set! Resting…';
+// ═══════════════════════════════════════
+function triggerRest() {
+  if (restSeconds <= 0) return;
+  restRemaining = restSeconds;
+  restTotal = restSeconds;
+  document.getElementById('rest-countdown').textContent = restRemaining;
+  document.getElementById('rest-ring').style.strokeDashoffset = '0';
+  document.getElementById('rest-next-label').textContent = 'Great set! Rest up…';
   document.getElementById('rest-overlay').classList.add('active');
   clearInterval(restTimer);
-  restTimer=setInterval(tickRest,1000);
+  restTimer = setInterval(tickRest, 1000);
 }
 
-function tickRest(){
+function tickRest() {
   restRemaining--;
-  document.getElementById('rest-countdown').textContent=restRemaining;
-  const circ=2*Math.PI*65; // r=65
-  const offset=circ*(1-restRemaining/restTotal);
-  document.getElementById('rest-ring').style.strokeDashoffset=offset;
-  if(restRemaining<=0){ clearInterval(restTimer); closeRest(); }
+  document.getElementById('rest-countdown').textContent = restRemaining;
+  const circ = 2 * Math.PI * 65;
+  const offset = circ * (1 - restRemaining / restTotal);
+  document.getElementById('rest-ring').style.strokeDashoffset = offset;
+  if (restRemaining <= 0) { clearInterval(restTimer); closeRest(); }
 }
 
-function skipRest(){ clearInterval(restTimer); closeRest(); }
-function closeRest(){ document.getElementById('rest-overlay').classList.remove('active'); }
-function addRestTime(s){ restRemaining+=s; restTotal+=s; document.getElementById('rest-countdown').textContent=restRemaining; }
+function skipRest() { clearInterval(restTimer); closeRest(); }
+function closeRest() { document.getElementById('rest-overlay').classList.remove('active'); }
+function addRestTime(s) {
+  restRemaining += s;
+  restTotal += s;
+  document.getElementById('rest-countdown').textContent = restRemaining;
+}
 
-// ════════════════════════════════════════════
+// ═══════════════════════════════════════
 //  SCREEN MANAGEMENT
-// ════════════════════════════════════════════
-function showScreen(id){
-  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+// ═══════════════════════════════════════
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
-  window.scrollTo(0,0);
+  window.scrollTo(0, 0);
 }
 
-// ════════════════════════════════════════════
+// ═══════════════════════════════════════
 //  INIT
-// ════════════════════════════════════════════
+// ═══════════════════════════════════════
 buildHome();
 </script>
 </body>
